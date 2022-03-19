@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
+import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     val fragment =  LoginFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(R.layout.activity_main)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
@@ -38,6 +39,11 @@ class MainActivity : AppCompatActivity() {
             val dialogFragment = ExitDialogFragment()
             dialogFragment.show(supportFragmentManager, "exit")
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main,menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
